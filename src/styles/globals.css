@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-size: 16px;
+  --background: #0f0e0d;
+  --foreground: #f5f1e8;
+  --card: #1c1916;
+  --card-foreground: #f5f1e8;
+  --popover: #1c1916;
+  --popover-foreground: #f5f1e8;
+  --primary: #c9a961;
+  --primary-foreground: #1c1916;
+  --secondary: #2d2823;
+  --secondary-foreground: #f5f1e8;
+  --muted: #2d2823;
+  --muted-foreground: #a39581;
+  --accent: #c9a961;
+  --accent-foreground: #1c1916;
+  --destructive: #8b1a1a;
+  --destructive-foreground: #f5f1e8;
+  --border: rgba(201, 169, 97, 0.2);
+  --input: transparent;
+  --input-background: #1c1916;
+  --switch-background: #3a342e;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #c9a961;
+  --chart-1: #c9a961;
+  --chart-2: #9a8165;
+  --chart-3: #b59a6d;
+  --chart-4: #a58e6f;
+  --chart-5: #b89d70;
+  --radius: 0.25rem;
+  --sidebar: #1c1916;
+  --sidebar-foreground: #f5f1e8;
+  --sidebar-primary: #c9a961;
+  --sidebar-primary-foreground: #1c1916;
+  --sidebar-accent: #2d2823;
+  --sidebar-accent-foreground: #f5f1e8;
+  --sidebar-border: rgba(201, 169, 97, 0.2);
+  --sidebar-ring: #c9a961;
+  
+  /* Medieval color palette - Ivory & Gold */
+  --medieval-gold: #c9a961;
+  --medieval-gold-light: #e5d4a6;
+  --medieval-gold-dark: #9a7b4a;
+  --medieval-dark: #0f0e0d;
+  --medieval-wood: #1c1916;
+  --medieval-ivory: #f5f1e8;
+  --medieval-stone: #2d2823;
+  --medieval-bronze: #9a8165;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #e8dfc4;
+  --card: #1a1510;
+  --card-foreground: #e8dfc4;
+  --popover: #1a1510;
+  --popover-foreground: #e8dfc4;
+  --primary: #d4af37;
+  --primary-foreground: #0a0a0a;
+  --secondary: #2a2419;
+  --secondary-foreground: #e8dfc4;
+  --muted: #2a2419;
+  --muted-foreground: #9d8f7a;
+  --accent: #d4af37;
+  --accent-foreground: #0a0a0a;
+  --destructive: #8b1a1a;
+  --destructive-foreground: #e8dfc4;
+  --border: rgba(212, 175, 55, 0.2);
+  --input: #2a2419;
+  --ring: #d4af37;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: #d4af37;
+  --chart-2: #8b7355;
+  --chart-3: #c19a6b;
+  --chart-4: #a0826d;
+  --chart-5: #b8926c;
+  --sidebar: #1a1510;
+  --sidebar-foreground: #e8dfc4;
+  --sidebar-primary: #d4af37;
+  --sidebar-primary-foreground: #0a0a0a;
+  --sidebar-accent: #2a2419;
+  --sidebar-accent-foreground: #e8dfc4;
+  --sidebar-border: rgba(212, 175, 55, 0.2);
+  --sidebar-ring: #d4af37;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  
+  h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .font-medieval {
+    font-family: 'Cinzel', serif;
+  }
+}
+
+/**
+ * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
+ */
+@layer base {
+  :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
+    h1 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h2 {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    h4 {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    p {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+
+    label {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    button {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+    }
+
+    input {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* Medieval decorative elements */
+.medieval-border {
+  border: 2px solid var(--medieval-gold);
+  border-image: linear-gradient(135deg, #c9a961 0%, #9a8165 50%, #c9a961 100%) 1;
+  box-shadow: 
+    inset 0 0 20px rgba(201, 169, 97, 0.1),
+    0 0 20px rgba(201, 169, 97, 0.2);
+}
+
+.medieval-texture {
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(201, 169, 97, 0.03) 2px,
+      rgba(201, 169, 97, 0.03) 4px
+    );
+}
+
+.ornament-corner::before,
+.ornament-corner::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--medieval-gold);
+}
+
+.ornament-corner::before {
+  top: -2px;
+  left: -2px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+
+.ornament-corner::after {
+  bottom: -2px;
+  right: -2px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
+
+.glow-gold {
+  box-shadow: 0 0 20px rgba(201, 169, 97, 0.3);
+}
+
+/* 3D / 2D Effects */
+.card-3d {
+  transform-style: preserve-3d;
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.25),
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(201, 169, 97, 0.1);
+}
+
+.card-3d:hover {
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 8px 16px rgba(0, 0, 0, 0.25),
+    0 16px 32px rgba(0, 0, 0, 0.2),
+    0 0 40px rgba(201, 169, 97, 0.2),
+    inset 0 1px 0 rgba(201, 169, 97, 0.2);
+}
+
+.button-3d {
+  box-shadow: 
+    0 4px 0 rgba(0, 0, 0, 0.4),
+    0 8px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(0);
+  transition: all 0.15s ease;
+}
+
+.button-3d:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 0 rgba(0, 0, 0, 0.4),
+    0 12px 24px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(201, 169, 97, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.button-3d:active {
+  transform: translateY(2px);
+  box-shadow: 
+    0 2px 0 rgba(0, 0, 0, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.embossed {
+  box-shadow: 
+    inset 2px 2px 4px rgba(0, 0, 0, 0.4),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.05);
+}
+
+.raised {
+  box-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.4),
+    -1px -1px 2px rgba(255, 255, 255, 0.05),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.2),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.1);
+}
