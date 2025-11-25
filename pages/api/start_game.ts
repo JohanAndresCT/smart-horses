@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-
+import { minimax } from './minmax';
 type ApiResponse = {
   success: boolean;
   state?: any;
@@ -52,7 +52,7 @@ function generateInitialBoard() {
 }
 
 // Función para calcular movimientos válidos
-function getValidMoves(
+export function getValidMoves(
   position: [number, number],
   board: number[][],
   destroyed: boolean[][]
@@ -66,7 +66,6 @@ function getValidMoves(
     [2, -1], [2, 1],
   ];
 
-  console.log('Calculando movimientos desde:', position);
 
   for (const [dr, dc] of horseMoves) {
     const newRow = row + dr;

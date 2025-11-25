@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-
+import { minimax } from './minmax';
+import leaf from './type';
 type ApiResponse = {
   success: boolean;
   state?: any;
@@ -36,7 +37,7 @@ function getValidMoves(
   return moves;
 }
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ApiResponse>
 ) {
@@ -60,10 +61,11 @@ export default function handler(
     const newHorses = { ...state.horses };
     const newScore = { ...state.score };
 
-    const currentPos = state.horses.black;
+    const currentPosBlack = state.horses.black;
+    const currentPosWhite = state.horses.white;
 
     // Obtener movimientos válidos para la IA
-    const validMoves = getValidMoves(currentPos, newBoard, newDestroyed);
+    const validMoves = getValidMoves(currentPosBlack, newBoard, newDestroyed);
 
     if (validMoves.length === 0) {
       return res.status(400).json({
@@ -71,9 +73,24 @@ export default function handler(
         error: 'La IA no tiene movimientos válidos',
       });
     }
+    
 
-    // Elegir movimiento aleatorio (temporal hasta implementar minimax)
-    const destination = validMoves[Math.floor(Math.random() * validMoves.length)];
+    const leafNode = new leaf(
+      currentPosWhite,
+      currentPosBlack,
+      currentPosWhite,
+      currentPosBlack,
+      0,
+      newBoard,
+      newDestroyed,
+      depth,
+      true,
+      true
+    );
+     const [valCal, pos] = await minimax(leafNode, depth,);
+    //  const [valCal, pos] = await minimax(leafNode, depth,-Infinity,+Infinity);
+    const resultMinMax = pos;
+    const destination = resultMinMax
     const [destRow, destCol] = destination;
 
     // Aplicar movimiento
@@ -118,7 +135,7 @@ export default function handler(
       validMoves: playerValidMoves,
       lastMove: {
         player: 'ai',
-        from: currentPos,
+        from: currentPosBlack,
         to: destination,
         points,
       },
