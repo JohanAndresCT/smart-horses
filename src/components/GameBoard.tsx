@@ -185,10 +185,10 @@ export function GameBoard({ difficulty, onReset, onBack }: GameBoardProps) {
 
     // Verificar si hay un caballo
     if (horses.white[0] === row && horses.white[1] === col) {
-      return <span className="text-3xl text-white drop-shadow-[0_2px_8px_rgba(255,255,255,0.8)]">♞</span>;
+      return <span className="text-3xl text-black drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" style={{ WebkitTextStroke: '2px #fff', paintOrder: 'stroke fill', textShadow: '0 0 15px #000, 0 2px 8px rgba(0,0,0,0.8)' }}>♞</span>;
     }
     if (horses.black[0] === row && horses.black[1] === col) {
-      return <span className="text-3xl text-white drop-shadow-[0_0_15px_rgba(255,255,255,1)]" style={{ WebkitTextStroke: '2px #1a1a1a', paintOrder: 'stroke fill' }}>♘</span>;
+      return <span className="text-3xl text-white drop-shadow-[0_2px_8px_rgba(255,255,255,0.8)]">♞</span>;
     }
 
     // Verificar si está destruida
@@ -371,7 +371,7 @@ export function GameBoard({ difficulty, onReset, onBack }: GameBoardProps) {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-2xl">♘</span>
+                      <span className="text-2xl">♞</span>
                       <span className="text-[#f5f1e8] text-sm">IA</span>
                     </div>
                     <span className="text-2xl text-[#c9a961]">{gameState.score.ai}</span>
@@ -383,7 +383,7 @@ export function GameBoard({ difficulty, onReset, onBack }: GameBoardProps) {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-2xl">♞</span>
+                      <span className="text-2xl">♘</span>
                       <span className="text-[#f5f1e8] text-sm">Jugador</span>
                     </div>
                     <span className="text-2xl text-[#c9a961]">{gameState.score.player}</span>
