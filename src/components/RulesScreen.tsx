@@ -36,105 +36,81 @@ export function RulesScreen({ onBack }: RulesScreenProps) {
 
         {/* Rules cards */}
         <div className="space-y-6">
-          {/* Rule 1 */}
+          {/* Regla 1 */}
           <MedievalCard>
             <div className="flex gap-6">
               <div className="flex-shrink-0">
                 <div 
                   className="p-4 bg-[#c9a961]/10 rounded border border-[#c9a961]/30 raised"
-                  style={{
-                    boxShadow: '0 4px 0 #6d5a3a, 0 6px 12px rgba(0,0,0,0.3)'
-                  }}
+                  style={{ boxShadow: '0 4px 0 #6d5a3a, 0 6px 12px rgba(0,0,0,0.3)' }}
                 >
                   <Crown className="w-10 h-10 text-[#c9a961]" />
                 </div>
               </div>
               <div className="space-y-2">
-                <h3 className="text-2xl text-[#e5d4a6] font-medieval">
-                  Objetivo del Juego
-                </h3>
+                <h3 className="text-2xl text-[#e5d4a6] font-medieval">Inicio y Objetivo del Juego</h3>
                 <p className="text-[#f5f1e8]/80 leading-relaxed">
-                  El objetivo es capturar el caballo del oponente mientras proteges el tuyo. 
-                  Cada jugador controla un caballo en el tablero de ajedrez y debe moverse 
-                  estratégicamente para eliminar al adversario.
+                  El juego comienza con la máquina (caballo blanco) y cada jugador controla un caballo en un tablero de ajedrez. El objetivo es acumular la mayor cantidad de puntos posibles moviendo tu caballo y destruyendo casillas.
                 </p>
               </div>
             </div>
           </MedievalCard>
 
-          {/* Rule 2 */}
+          {/* Regla 2 */}
           <MedievalCard>
             <div className="flex gap-6">
               <div className="flex-shrink-0">
                 <div 
                   className="p-4 bg-[#c9a961]/10 rounded border border-[#c9a961]/30 raised"
-                  style={{
-                    boxShadow: '0 4px 0 #6d5a3a, 0 6px 12px rgba(0,0,0,0.3)'
-                  }}
+                  style={{ boxShadow: '0 4px 0 #6d5a3a, 0 6px 12px rgba(0,0,0,0.3)' }}
                 >
                   <Target className="w-10 h-10 text-[#c9a961]" />
                 </div>
               </div>
               <div className="space-y-2">
-                <h3 className="text-2xl text-[#e5d4a6] font-medieval">
-                  Movimiento del Caballo
-                </h3>
+                <h3 className="text-2xl text-[#e5d4a6] font-medieval">Movimiento y Puntuación</h3>
                 <p className="text-[#f5f1e8]/80 leading-relaxed">
-                  Los caballos se mueven en forma de "L": dos casillas en una dirección 
-                  (horizontal o vertical) y una casilla perpendicular. Este es el movimiento 
-                  clásico del caballo en ajedrez. El caballo puede saltar sobre otras piezas.
+                  En cada turno, el jugador debe mover su caballo en “L” (como en ajedrez) a una casilla no destruida. Si la casilla tiene puntos, el jugador suma ese valor. Las posiciones iniciales de los caballos y las 10 casillas con puntos son aleatorias y no pueden coincidir.
                 </p>
               </div>
             </div>
           </MedievalCard>
 
-          {/* Rule 3 */}
+          {/* Regla 3 */}
           <MedievalCard>
             <div className="flex gap-6">
               <div className="flex-shrink-0">
                 <div 
                   className="p-4 bg-[#c9a961]/10 rounded border border-[#c9a961]/30 raised"
-                  style={{
-                    boxShadow: '0 4px 0 #6d5a3a, 0 6px 12px rgba(0,0,0,0.3)'
-                  }}
+                  style={{ boxShadow: '0 4px 0 #6d5a3a, 0 6px 12px rgba(0,0,0,0.3)' }}
                 >
                   <Shield className="w-10 h-10 text-[#c9a961]" />
                 </div>
               </div>
               <div className="space-y-2">
-                <h3 className="text-2xl text-[#e5d4a6] font-medieval">
-                  Casillas Destruidas
-                </h3>
+                <h3 className="text-2xl text-[#e5d4a6] font-medieval">Casillas Destruidas y Penalización</h3>
                 <p className="text-[#f5f1e8]/80 leading-relaxed">
-                  Después de que un caballo se mueve desde una casilla, esa casilla queda 
-                  destruida y no puede ser utilizada nuevamente en el juego. Esto reduce 
-                  progresivamente el espacio disponible y aumenta la dificultad estratégica.
+                  Cada vez que un caballo se mueve, la casilla queda destruida y no puede volver a usarse. Si durante su turno un jugador no tiene movimientos pero el adversario sí, recibe una penalización de -4 puntos.
                 </p>
               </div>
             </div>
           </MedievalCard>
 
-          {/* Rule 4 */}
+          {/* Regla 4 */}
           <MedievalCard>
             <div className="flex gap-6">
               <div className="flex-shrink-0">
                 <div 
                   className="p-4 bg-[#c9a961]/10 rounded border border-[#c9a961]/30 raised"
-                  style={{
-                    boxShadow: '0 4px 0 #6d5a3a, 0 6px 12px rgba(0,0,0,0.3)'
-                  }}
+                  style={{ boxShadow: '0 4px 0 #6d5a3a, 0 6px 12px rgba(0,0,0,0.3)' }}
                 >
                   <Swords className="w-10 h-10 text-[#c9a961]" />
                 </div>
               </div>
               <div className="space-y-2">
-                <h3 className="text-2xl text-[#e5d4a6] font-medieval">
-                  Condiciones de Victoria
-                </h3>
+                <h3 className="text-2xl text-[#e5d4a6] font-medieval">Condición de Fin y Victoria</h3>
                 <p className="text-[#f5f1e8]/80 leading-relaxed">
-                  Ganas el juego si: (1) Capturas el caballo del oponente moviéndote a su 
-                  casilla, o (2) El oponente no tiene movimientos válidos disponibles. 
-                  La estrategia es clave para acorralar al adversario.
+                  El juego termina cuando ninguno de los jugadores puede mover. Gana quien tenga más puntos; si hay empate, se indica. Los valores de las casillas con puntos son: -10, -5, -4, -3, -1, +1, +3, +4, +5, +10.
                 </p>
               </div>
             </div>
