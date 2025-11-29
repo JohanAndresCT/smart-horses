@@ -81,17 +81,30 @@ export default function handler(
     newDestroyed[destRow][destCol] = true;
 
     // Verificar si el jugador puede seguir moviendo
-    const playerCanMove = getValidMoves(destination, newBoard, newDestroyed).length > 0;
-    if (!playerCanMove) {
-      newScore.player -= 4;
-    }
+    const playerCanMove = getValidMoves(newHorses.white, newBoard, newDestroyed).length > 0;
 
-    // Verificar si la IA puede mover
+    // Recalcular si la IA está bloqueada justo después del movimiento del jugador
     const aiCanMove = getValidMoves(newHorses.black, newBoard, newDestroyed).length > 0;
 
-    const gameOver = !playerCanMove && !aiCanMove;
-    let winner = null;
+    // Penalización: solo si el jugador está bloqueado y la IA sí puede mover
+    if (!playerCanMove && aiCanMove) {
+      newScore.player -= 4;
+    }
+    // Penalización acumulativa: si la IA está bloqueada y el jugador sí puede mover, se descuenta -4 a la IA en cada turno del jugador
+    if (!aiCanMove && playerCanMove) {
+      console.log('Penalización IA:', {
+        aiCanMove,
+        playerCanMove,
+        scoreAI: newScore.ai,
+        posBlack: newHorses.black,
+        posWhite: newHorses.white
+      });
+      newScore.ai -= 4;
+    }
 
+    const gameOver = !playerCanMove && !aiCanMove;
+
+    let winner = null;
     if (gameOver) {
       if (newScore.player > newScore.ai) {
         winner = 'player';

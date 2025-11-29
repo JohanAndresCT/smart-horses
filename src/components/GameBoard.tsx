@@ -61,6 +61,16 @@ export function GameBoard({ difficulty, onReset, onBack }: GameBoardProps) {
     }
   }, [gameState?.gameOver]);
 
+  // Automatizar movimientos de la IA si el jugador está bloqueado
+  useEffect(() => {
+    if (!gameState || gameState.gameOver) return;
+    // Si es turno del jugador pero no tiene movimientos válidos
+    if (gameState.turn === 'player' && gameState.validMoves.length === 0) {
+      // Esperar un poco para mostrar el estado y luego hacer que la IA juegue
+      setTimeout(() => makeAIMove(gameState), 500);
+    }
+  }, [gameState]);
+
   // Inicializar juego
   useEffect(() => {
     initializeGame();

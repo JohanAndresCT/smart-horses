@@ -99,18 +99,20 @@ export default async function handler(
     newHorses.black = destination;
     newDestroyed[destRow][destCol] = true;
 
-    // Verificar si la IA puede seguir moviendo
-    const aiCanMove = getValidMoves(destination, newBoard, newDestroyed).length > 0;
-    if (!aiCanMove) {
-      newScore.ai -= 4;
-    }
-
+    // Verificar si la IA puede mover
+    let aiCanMove = getValidMoves(newHorses.black, newBoard, newDestroyed).length > 0;
     // Verificar si el jugador puede mover
     const playerCanMove = getValidMoves(newHorses.white, newBoard, newDestroyed).length > 0;
 
     const gameOver = !playerCanMove && !aiCanMove;
-    let winner = null;
+    // Penalización: solo si uno está bloqueado y el otro sí puede mover, y nunca si ambos están bloqueados
+    if (!aiCanMove && playerCanMove) {
+      newScore.ai -= 4;
+    } else if (!playerCanMove && aiCanMove) {
+      newScore.player -= 4;
+    }
 
+    let winner = null;
     if (gameOver) {
       if (newScore.player > newScore.ai) {
         winner = 'player';
